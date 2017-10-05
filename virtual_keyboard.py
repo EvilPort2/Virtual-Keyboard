@@ -151,11 +151,9 @@ def main():
 			flag_keypress = False
 
 		# displaying the keyboard
-		c1 = 0
 		for key in row_keys_points:
 			cv2.putText(img, key[0], key[3], cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0))
 			cv2.rectangle(img, key[1], key[2], (0, 255, 0), thickness = 2)
-			c1 += 1
 
 		cv2.imshow("img", img)
 		
