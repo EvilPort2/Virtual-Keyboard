@@ -21,7 +21,7 @@ def get_keys():
 	row2_key_width = key_width * 9			# width of second row
 	row3_key_width = key_width * 7			# width of third row
 	row4_key_width = key_width * 5			# width of spacebar
-	row_keys = []							# stores the keys along with its 2 corner coordinates and the center coordinate
+	row_keys = []					# stores the keys along with its 2 corner coordinates and the center coordinate
 
 	# for the first row
 	x1, y1 = 0, int((height - key_width * 4) / 2)	# 4 is due to the fact that we will have 4 rows. y1 is set such that the whole keyboard has equal margin on both top and bottom
@@ -92,8 +92,8 @@ def do_keypress(img, center, row_keys_points):
 def main():
 	row_keys_points = get_keys()
 	new_area, old_area = 0, 0
-	c, c2 = 0, 0									# c stores the number of iterations for calculating the difference b/w present area and previous area
-													# c2 stores the number of iterations for calculating the difference b/w present center and previous center
+	c, c2 = 0, 0								# c stores the number of iterations for calculating the difference b/w present area and previous area
+										# c2 stores the number of iterations for calculating the difference b/w present center and previous center
 	flag_keypress = False							# if a key is pressed then this flag is True
 	while True:
 		img = cam.read()[1]
@@ -124,14 +124,14 @@ def main():
 					old_area = new_area
 				c += 1
 				diff_area = 0
-				if c > 3:								# after every 3rd iteration difference of area is calculated
+				if c > 3:					# after every 3rd iteration difference of area is calculated
 					diff_area = new_area - old_area
 					c = 0
 				if c2 == 0:
 					old_center = new_center
 				c2 += 1
 				diff_center = np.array([0, 0])
-				if c2 > 5:								# after every 5th iteration difference of center is claculated
+				if c2 > 5:					# after every 5th iteration difference of center is calculated
 					diff_center = new_center - old_center
 					c2 = 0
 				
