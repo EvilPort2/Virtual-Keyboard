@@ -85,7 +85,11 @@ def do_keypress(img, center, row_keys_points):
 		arr2 = list(np.int0(np.array(center) <= np.array(row[2])))			# center of the contour has less value than the bottom right corner point of a key 
 		if arr1 == [1, 1] and arr2 == [1, 1]:
 			gui.press(row[0])
-			cv2.fillConvexPoly(img, np.array([np.array(row[1]), np.array([row[1][0], row[2][1]]), np.array(row[2]), np.array([row[2][0], row[1][1]])]), (255, 0, 0))
+			cv2.fillConvexPoly(img, np.array([np.array(row[1]), \
+								np.array([row[1][0], row[2][1]]), \
+								np.array(row[2]), \
+								np.array([row[2][0], row[1][1]])]), \
+							(255, 0, 0))
 	return img
 
 
