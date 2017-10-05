@@ -30,7 +30,7 @@ def get_keys():
 	# for the first row
 	x1, y1 = 0, int((height - key_width * 4) / 2)	# 4 is due to the fact that we will have 4 rows. y1 is set such that the whole keyboard has equal margin on both top and bottom
 	x2, y2 = key_width + x1, key_width + y1
-	c1, c2, c3, c4 = x1, y1, x2, y2			# copying x1, x2, y1 and y2
+	c1, c2 = x1, y1					# copying x1, y1 
 	c = 0
 	keys = "qwertyuiop"
 	for i in range(len(keys)):
@@ -38,12 +38,12 @@ def get_keys():
 		x1 += key_width
 		x2 += key_width
 		c += 1
-	x1, y1, x2, y2 = c1, c2, c3, c4					# copying back from c1, c2, c3 and c4
+	x1, y1 = c1, c2					# copying back from c1, c2
 
 	# for second row
 	x1, y1 = int((row1_key_width - row2_key_width) / 2) + x1, y1 + key_width   # x1 is set such that it leaves equal margin on both left and right side
 	x2, y2 = key_width + x1, key_width + y1
-	c1, c2, c3, c4 = x1, y1, x2, y2	
+	c1, c2 = x1, y1
 	c = 0
 	keys = "asdfghjkl"
 	for i in range(len(keys)):
@@ -51,12 +51,12 @@ def get_keys():
 		x1 += key_width
 		x2 += key_width
 		c += 1
-	x1, y1, x2, y2 = c1, c2, c3, c4
+	x1, y1 = c1, c2
 
 	# for third row
 	x1, y1 = int((row2_key_width - row3_key_width) / 2) + x1, y1 + key_width
 	x2, y2 = key_width + x1, key_width + y1	
-	c1, c2, c3, c4 = x1, y1, x2, y2	
+	c1, c2 = x1, y1
 	c = 0
 	keys = "zxcvbnm"
 	for i in range(len(keys)):
@@ -69,7 +69,7 @@ def get_keys():
 	# for the space bar
 	x1, y1 = int((row3_key_width - row4_key_width) / 2) + x1, y1 + key_width
 	x2, y2 = 5 * key_width + x1, key_width + y1	
-	c1, c2, c3, c4 = x1, y1, x2, y2	
+	c1, c2 = x1, y1
 	c = 0
 	keys = " "
 	for i in range(len(keys)):
@@ -77,7 +77,7 @@ def get_keys():
 		x1 += key_width
 		x2 += key_width
 		c += 1
-	x1, y1, x2, y2 = c1, c2, c3, c4
+	x1, y1 = c1, c2
 
 	return row_keys
 
