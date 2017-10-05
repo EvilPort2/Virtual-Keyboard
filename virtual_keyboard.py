@@ -10,7 +10,8 @@ hsv_lower = np.array([t[0], t[1], t[2]])
 hsv_upper = np.array([t[3], t[4], t[5]])
 width = cam.get(cv2.CAP_PROP_FRAME_WIDTH)	# width of video captured by the webcam
 height = cam.get(cv2.CAP_PROP_FRAME_HEIGHT)	# height of the video captured by the webcam
-key_width = int(width/10)					# width of one key. width is divided by 10 as the max number of keys in a single row is 10.
+max_keys_in_a_row = 10
+key_width = int(width/max_keys_in_a_row)	# width of one key. width is divided by 10 as the max number of keys in a single row is 10.
 
 
 def get_keys():
