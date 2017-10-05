@@ -64,7 +64,7 @@ def get_keys():
 		x1 += key_width
 		x2 += key_width
 		c += 1
-	x1, y1, x2, y2 = c1, c2, c3, c4
+	x1, y1 = c1, c2
 
 	# for the space bar
 	x1, y1 = int((row3_key_width - row4_key_width) / 2) + x1, y1 + key_width
