@@ -19,4 +19,4 @@ First run the range-detector.py to set the range for the mask for colour segment
     python3 virtual_keyboard.py
 
 # Got a question?
-If you have any questions that are bothering you please contact me on my <a href = "facebook.com/dibakar.saha.750">facebook profile</a>. Just do not ask me questions like where do I live, who do I work for etc. Also no questions like what does this line do. If you think a line is redundant or can be removed to make the program better then you can obviously ask me or make a pull request.
+If you have any questions that are bothering you please contact me on my <a href = "http://facebook.com/dibakar.saha.750">facebook profile</a>. Just do not ask me questions like where do I live, who do I work for etc. Also no questions like what does this line do. If you think a line is redundant or can be removed to make the program better then you can obviously ask me or make a pull request.
