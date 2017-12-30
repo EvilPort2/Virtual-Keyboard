@@ -2,7 +2,7 @@
 A simple virtual keyboard created using OpenCV and Python which has 26 alphabets and a space bar.
 
 # Outcome
-Look for yourself in this <a href = "https://lh3.googleusercontent.com/-BE99T5RPcL4/WdNYbPeHOpI/AAAAAAAAAxE/v_ZXXGv6y9MqSgfwcVTH4b7y2BCERvvBACJoC/w663-h373-rw/video41.gif">video</a>
+Look for yourself in this <a href = "https://www.youtube.com/watch?v=iiRxIg4L0uI">video</a>
 
 # What have I done
 The secret here is the area of the yellow paper I am wearing on my fingers. When I bring the paper near to the camera, the area of the paper as seen by the camera increases. When it is moved back the, the area of the paper as seen by the camera decreases. This is the simple idea that I have used to detect the click. The position of the click determines the key press that is to be simulated.<br>
