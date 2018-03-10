@@ -12,7 +12,7 @@ hsv_lower = np.array([t[0], t[1], t[2]])
 hsv_upper = np.array([t[3], t[4], t[5]])
 width = cam.get(cv2.CAP_PROP_FRAME_WIDTH)	# width of video captured by the webcam
 height = cam.get(cv2.CAP_PROP_FRAME_HEIGHT)	# height of the video captured by the webcam
-max_keys_in_a_row = 10						# max number of keys in any row is 10 i.e the first row which contains qwertyuiop 
+max_keys_in_a_row = 10				# max number of keys in any row is 10 i.e the first row which contains qwertyuiop 
 key_width = int(width/max_keys_in_a_row)	# width of one key. width is divided by 10 as the max number of keys in a single row is 10.
 
 
@@ -27,12 +27,12 @@ def get_keys():
 	row2_key_width = key_width * 9			# width of second row
 	row3_key_width = key_width * 7			# width of third row
 	row4_key_width = key_width * 5			# width of spacebar
-	row_keys = []							# stores the keys along with its 2 corner coordinates and the center coordinate
+	row_keys = []					# stores the keys along with its 2 corner coordinates and the center coordinate
 
 	# for the first row
 	x1, y1 = 0, int((height - key_width * 4) / 2)	# 4 is due to the fact that we will have 4 rows. y1 is set such that the whole keyboard has equal margin on both top and bottom
 	x2, y2 = key_width + x1, key_width + y1
-	c1, c2 = x1, y1					# copying x1, x2, y1 and y2
+	c1, c2 = x1, y1					# copying x1, y1 
 	c = 0
 	keys = "qwertyuiop"
 	for i in range(len(keys)):
@@ -40,12 +40,12 @@ def get_keys():
 		x1 += key_width
 		x2 += key_width
 		c += 1
-	x1, y1 = c1, c2					# copying back from c1, c2, c3 and c4
+	x1, y1 = c1, c2					# copying back from c1, c2
 
 	# for second row
 	x1, y1 = int((row1_key_width - row2_key_width) / 2) + x1, y1 + key_width   # x1 is set such that it leaves equal margin on both left and right side
 	x2, y2 = key_width + x1, key_width + y1
-	c1, c2 = x1, y1	
+	c1, c2 = x1, y1
 	c = 0
 	keys = "asdfghjkl"
 	for i in range(len(keys)):
@@ -58,7 +58,7 @@ def get_keys():
 	# for third row
 	x1, y1 = int((row2_key_width - row3_key_width) / 2) + x1, y1 + key_width
 	x2, y2 = key_width + x1, key_width + y1	
-	c1, c2 = x1, y1	
+	c1, c2 = x1, y1
 	c = 0
 	keys = "zxcvbnm"
 	for i in range(len(keys)):
@@ -71,7 +71,7 @@ def get_keys():
 	# for the space bar
 	x1, y1 = int((row3_key_width - row4_key_width) / 2) + x1, y1 + key_width
 	x2, y2 = 5 * key_width + x1, key_width + y1	
-	c1, c2 = x1, y1	
+	c1, c2 = x1, y1
 	c = 0
 	keys = " "
 	for i in range(len(keys)):
@@ -99,19 +99,19 @@ def do_keypress(img, center, row_keys_points):
 	return img
 
 
-def start_keyboard():
+def main():
 	row_keys_points = get_keys()
 	new_area, old_area = 0, 0
-	c, c2 = 0, 0									# c stores the number of iterations for calculating the difference b/w present area and previous area
-													# c2 stores the number of iterations for calculating the difference b/w present center and previous center
-	flag_keypress = False							# if a key is pressed then this flag is True
+	c, c2 = 0, 0						# c stores the number of iterations for calculating the difference b/w present area and previous area
+								# c2 stores the number of iterations for calculating the difference b/w present center and previous center
+	flag_keypress = False					# if a key is pressed then this flag is True
 	while True:
 		img = cam.read()[1]
 		img = cv2.flip(img, 1)
 		imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 		mask = cv2.inRange(imgHSV, hsv_lower, hsv_upper)
 		blur = cv2.medianBlur(mask, 15)
-		blur = cv2.GaussianBlur(blur, (5,5), 0)
+		blur = cv2.GaussianBlur(blur , (5,5), 0)
 		thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
 		contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[1]
 
@@ -134,14 +134,14 @@ def start_keyboard():
 					old_area = new_area
 				c += 1
 				diff_area = 0
-				if c > 3:								# after every 3rd iteration difference of area is calculated
+				if c > 3:				# after every 3rd iteration difference of area is calculated
 					diff_area = new_area - old_area
 					c = 0
 				if c2 == 0:
 					old_center = new_center
 				c2 += 1
 				diff_center = np.array([0, 0])
-				if c2 > 5:								# after every 5th iteration difference of center is claculated
+				if c2 > 5:				# after every 5th iteration difference of center is claculated
 					diff_center = new_center - old_center
 					c2 = 0
 				
@@ -173,5 +173,4 @@ def start_keyboard():
 	cam.release()
 	cv2.destroyAllWindows()
 
-start_keyboard()
-
+main()
